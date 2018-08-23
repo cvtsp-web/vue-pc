@@ -39,7 +39,7 @@ export function RequestNode(options) {
  */
 function axiosRequestMiddle(fn) {
     return function(options) {
-        fn(options)
+        return fn(options)
         .then(mess => {
             return mess.data;
         })

@@ -17,7 +17,7 @@ export default {
     inject: ['actions'],
     async mounted() {
         const results = await this.actions.findDevApi();
-
+        console.log(results)
     }
 }
 </script>
