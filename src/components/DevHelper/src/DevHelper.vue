@@ -31,7 +31,7 @@
             }
         },
         mounted() {
-            console.log('************* 我是开发小助手 **************')
+            console.log('************* 我是开发小助手 **************');
             this.handlerKeyCommander();
         },
         provide() {
@@ -61,12 +61,12 @@
              */
             handlerKeyCommander() {
                 document.addEventListener('keydown', e => {
-                    var e = e || window.event;
-                    var keycode = e.keyCode || e.which || e.charCode || 0;
-                    var ctrlKey = e.ctrlKey || e.metaKey;
+                    var event = e || window.event;
+                    var keycode = event.keyCode || event.which || event.charCode || 0;
+                    var ctrlKey = event.ctrlKey || event.metaKey;
                     // ctrl + s(number)
                     if(ctrlKey && keycode === 83) {
-                        e.preventDefault();
+                        event.preventDefault();
                         this.dialogFlag = true;
                     } 
                 })
