@@ -1,11 +1,11 @@
 <template>
     <el-dialog title="我是开发小助手" :visible.sync="dialogFlag">
         <el-tabs>
-            <el-tab-pane label="选择">
-                <dev-helper-chooseapi />
+            <el-tab-pane label="选择" >
+                <dev-helper-chooseapi @setApi="setApiarr" :apiOptionsArr="apiOptionsArr"/>
             </el-tab-pane>
             <el-tab-pane label="添加接口地址">
-                <dev-helper-addapi />
+                <dev-helper-addapi @setApi="setApiarr" :apiOptionsArr="apiOptionsArr"/>
             </el-tab-pane>
             <el-tab-pane label="上传文件">
                 <dev-helper-addfiles />
@@ -29,7 +29,8 @@
         components: { DevHelperAddapi, DevHelperChooseapi, DevHelperAddfiles },
         data() {
             return {
-                dialogFlag: false
+                dialogFlag: false,
+                apiOptionsArr:[]
             }
         },
         mounted() {
@@ -52,7 +53,8 @@
                             url: '/devtestapi/find',
                             method: 'get'
                         })
-                    }
+                    },
+                   
                 }
             }
         },
@@ -72,7 +74,16 @@
                         this.dialogFlag = true;
                     } 
                 })
-            }
+            },
+          async setApiarr(val){
+              const {flag,data} = await RequestNode({url: '/devtestapi/find',  method: 'get' })
+                    if(flag){
+                        this.apiOptionsArr=data
+                    }              
+           }
+        },
+        watch:{
+            
         }
     }
 </script>
