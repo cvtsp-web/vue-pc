@@ -17,7 +17,6 @@
 <script>
 import { Message } from 'element-ui'
     export default {
-          props:["apiOptionsArr"],
         data() {
             return {
                 formData: {
@@ -38,12 +37,12 @@ import { Message } from 'element-ui'
         inject: ['actions'],
         methods: {
            handlerForm() {
-                this.$refs['form'].validate( vaild => {
+                this.$refs['form'].validate(vaild => {
                     if(!vaild) return;
-                    this.actions.saveDevApi(this.formData).then(data=>{
+                    this.actions.saveDevApi(this.formData).then(async data=>{
                         if(data.flag){
                             //刷新api数组
-                            this.$emit("setApi")
+                            this.actions.setApiarr()
                             //重置form
                             this.handlerRepeat()
                             //消息提示

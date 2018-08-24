@@ -22,9 +22,10 @@ export default {
        
     },
     inject: ['actions'],
-    created() {
-       this.currentAPI=localStorage.getItem("server")||""
-       this.$emit("setApi")
+    async created() {
+        this.currentAPI=localStorage.getItem("server")||""
+        this.actions.setApiarr()
+    //    this.$emit("setApi")
     },
     methods: {
         getLabel(opt) {
@@ -41,7 +42,7 @@ export default {
                 window.location.reload()
             }
 
-        },
+        }
     }
 }
 </script>
