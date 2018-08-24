@@ -38,9 +38,9 @@ export default {
         handleImageSuccess(res, file) {
             let _self=this;
             if(file.status == "success"){
-                setTimeout(function(){
-                    _self.uploadObj.clearFiles();
-                },1000)
+                // setTimeout(function(){
+                //     _self.uploadObj.clearFiles();
+                // },1000)
                 
             }
         },
@@ -81,13 +81,13 @@ export default {
     line-height: 146px;
     vertical-align: top;
     display: inline-block;
+    margin: 10px 10px 10px 0;
     text-align: center;
     cursor: pointer;
     outline: 0;
     
 }
 .picture-upload .el-upload-list{
-    margin: -10px 10px;
     display: inline-block;
 }
 .picture-upload .el-upload-list .el-upload-list__item{
