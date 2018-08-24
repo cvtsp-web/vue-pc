@@ -1,11 +1,11 @@
 <template>
     <el-dialog title="我是开发小助手" :visible.sync="dialogFlag">
         <el-tabs>
-            <el-tab-pane label="选择">
-                <dev-helper-chooseapi />
+            <el-tab-pane label="选择" >
+                <dev-helper-chooseapi :apiOptionsArr="apiOptionsArr"/>
             </el-tab-pane>
             <el-tab-pane label="添加接口地址">
-                <dev-helper-addapi />
+                <dev-helper-addapi  />
             </el-tab-pane>
             <el-tab-pane label="上传文件">
                 <dev-helper-addfiles />
@@ -29,7 +29,8 @@
         components: { DevHelperAddapi, DevHelperChooseapi, DevHelperAddfiles },
         data() {
             return {
-                dialogFlag: false
+                dialogFlag: false,
+                apiOptionsArr:[]
             }
         },
         mounted() {
@@ -37,6 +38,7 @@
             this.handlerKeyCommander();
         },
         provide() {
+            const _this=this;
             return {
                 actions: {
                     // 保存ip地址
@@ -47,11 +49,17 @@
                         });
                     },
                     // 查找所有ip地址
-                    findDevApi() {
-                        return RequestNode({
-                            url: '/devtestapi/find',
-                            method: 'get'
-                        })
+                    // findDevApi() {
+                    //     return RequestNode({
+                    //         url: '/devtestapi/find',
+                    //         method: 'get'
+                    //     })
+                    // },
+                    async setApiarr(val){
+                        const {flag,data} = await RequestNode({url: '/devtestapi/find',  method: 'get'})
+                        if(flag){
+                            _this.apiOptionsArr=data
+                        }              
                     }
                 }
             }
@@ -72,7 +80,16 @@
                         this.dialogFlag = true;
                     } 
                 })
-            }
+            },
+          async setApiarr(val){
+              const {flag,data} = await RequestNode({url: '/devtestapi/find',  method: 'get' })
+                    if(flag){
+                        this.apiOptionsArr=data
+                    }              
+           }
+        },
+        watch:{
+            
         }
     }
 </script>

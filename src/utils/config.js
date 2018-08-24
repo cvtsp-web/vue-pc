@@ -7,7 +7,7 @@ import { isExistLocalStorage } from '@/utils/utils'
  * middle: localStorage.getItem('middle_server)
  */
 const _DEFAULT_SERVER = 'http://test.cvtsp.com/api';
-const _DEFAULT_MIDDLE_SERVER = 'http://192.168.199.247:4000';
+const _DEFAULT_MIDDLE_SERVER = 'http://10.10.12.207:4000';
 // 后端服务地址
 const SERVER = isExistLocalStorage('server') ? localStorage.getItem('server') : _DEFAULT_SERVER;
 // 中间服务地址
