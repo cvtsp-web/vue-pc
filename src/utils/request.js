@@ -1,4 +1,5 @@
 import axios from 'axios'
+import CONFIG from '@/utils/config'
 
 /**
  * customize yourself according to business requirements
@@ -7,7 +8,7 @@ import axios from 'axios'
  * @link: axios
  */
 var instance = axios.create({
-    baseURL: 'http://test.cvtsp.com/api',
+    baseURL: CONFIG.SERVER,
     timeout: 30000,
     withCredentials: true,
     method: 'post',
@@ -24,7 +25,7 @@ export function Request(options) {
  * node static resource server
  */
 const instanceMiddle = axios.create({
-    baseURL: 'http://10.10.12.207:4000',
+    baseURL: CONFIG.MIDDLE_SERVER,
     withCredentials: true,
     method: 'post'
 });
