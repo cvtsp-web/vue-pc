@@ -5,7 +5,7 @@
                 <dev-helper-chooseapi :apiOptionsArr="apiOptionsArr"/>
             </el-tab-pane>
             <el-tab-pane label="添加接口地址">
-                <dev-helper-addapi  :apiOptionsArr="apiOptionsArr"/>
+                <dev-helper-addapi  />
             </el-tab-pane>
             <el-tab-pane label="上传文件">
                 <dev-helper-addfiles />
@@ -49,15 +49,17 @@
                         });
                     },
                     // 查找所有ip地址
-                    findDevApi() {
-                        return RequestNode({
-                            url: '/devtestapi/find',
-                            method: 'get'
-                        })
-                    },
-                    //改变父组件某个值
-                    setAtrribute(propval,newVal){
-                        _this[propval]=newVal
+                    // findDevApi() {
+                    //     return RequestNode({
+                    //         url: '/devtestapi/find',
+                    //         method: 'get'
+                    //     })
+                    // },
+                    async setApiarr(val){
+                        const {flag,data} = await RequestNode({url: '/devtestapi/find',  method: 'get'})
+                        if(flag){
+                            _this.apiOptionsArr=data
+                        }              
                     }
                 }
             }
