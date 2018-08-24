@@ -22,16 +22,17 @@ export default {
     data() {
         return {
             imgUrl: '',
-            FILE_UPLOAD:CONFIG.MIDDLE_SERVER + '/devtestapi/upload'
+            
         }
     },
     computed: {
-        // FILE_UPLOAD() {
-        //     return CONFIG.MIDDLE_SERVER + '/devtestapi/upload';
-        // },
         uploadObj(){
             return this.$refs['loads'];
-        }
+        },
+        FILE_UPLOAD(){
+            return CONFIG.MIDDLE_SERVER + '/devtestapi/upload';
+        },
+        
     },
     methods: {
         handleImageSuccess(res, file) {
@@ -54,17 +55,13 @@ export default {
             const isSIZE = file.size / 1024 / 1024 < 2;
 
             if(isIMG === -1) {
-                this.FILE_UPLOAD = CONFIG.MIDDLE_SERVER + '/devtestapi/upload';
+
             }else{
                 if(!isSIZE) {
                     Message.error('上传内容不能超过2M');
                     return false;
                 }
-                this.FILE_UPLOAD = CONFIG.MIDDLE_SERVER + '/devtestapi/upload';
             }
-
-            
-            return true;
         }
     }
 }
@@ -85,6 +82,10 @@ export default {
     cursor: pointer;
     outline: 0;
     
+}
+.picture-upload .el-upload-list{
+    margin: -10px 10px;
+    display: inline-block;
 }
 </style>
 
