@@ -8,23 +8,25 @@
                 <dev-helper-addapi />
             </el-tab-pane>
             <el-tab-pane label="上传文件">
-                
+                <dev-helper-addfiles />
             </el-tab-pane>
         </el-tabs>
     </el-dialog>
 </template>
 
 <script>
+    import { RequestNode } from '@/utils/request'
+    import DevHelperAddapi from './DevHelper-addapi.vue'
+    import DevHelperChooseapi from './DevHelper-chooseapi.vue'
+    import DevHelperAddfiles from './DevHelper-addfiles.vue'
+
     /**
      * @author: wukangjun
      * @created: Tue Aug 21 2018 14:21:33 GMT+0800 (CST)
      */
-    import { RequestNode } from '@/utils/request'
-    import DevHelperAddapi from './DevHelper-addapi.vue'
-    import DevHelperChooseapi from './DevHelper-chooseapi.vue'
     export default {
         name: 'DevHelper',
-        components: { DevHelperAddapi, DevHelperChooseapi },
+        components: { DevHelperAddapi, DevHelperChooseapi, DevHelperAddfiles },
         data() {
             return {
                 dialogFlag: false
