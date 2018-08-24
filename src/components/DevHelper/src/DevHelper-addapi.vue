@@ -41,7 +41,7 @@ import { Message } from 'element-ui'
                 this.$refs['form'].validate(vaild => {
                     if(!vaild) return;
                     this.actions.saveDevApi(this.formData).then(async data=>{
-                        if(data.flag){
+                        if(data.flag){ 
                             //刷新api数组
                             const {data}=await this.actions.findDevApi()
                             this.actions.setAtrribute("apiOptionsArr",data)
