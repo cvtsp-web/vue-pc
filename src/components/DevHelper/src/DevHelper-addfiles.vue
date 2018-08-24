@@ -53,9 +53,12 @@ export default {
         beforeImageUpload(file) {
             const isIMG = ['image/jpeg', 'image/png', 'image/svg', 'image/gif'].indexOf(file.type);
             const isSIZE = file.size / 1024 / 1024 < 2;
-
+            const isFile = file.size / (1024*1024) < 10;
             if(isIMG === -1) {
-
+                if(!isFile) {
+                    Message.error('上传内容不能超过10M');
+                    return false;
+                }
             }else{
                 if(!isSIZE) {
                     Message.error('上传内容不能超过2M');
@@ -78,14 +81,17 @@ export default {
     line-height: 146px;
     vertical-align: top;
     display: inline-block;
+    margin: 10px 10px 10px 0;
     text-align: center;
     cursor: pointer;
     outline: 0;
     
 }
 .picture-upload .el-upload-list{
-    margin: -10px 10px;
     display: inline-block;
+}
+.picture-upload .el-upload-list .el-upload-list__item{
+    width: 450px;
 }
 </style>
 
