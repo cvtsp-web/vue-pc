@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props:["apiOptionsArr"],
+     props:["apiOptionsArr"],
     data() {
         return{
             currentAPI: '',
@@ -24,8 +24,8 @@ export default {
     inject: ['actions'],
     async created() {
         this.currentAPI=localStorage.getItem("server")||""
-        this.actions.setApiarr()
-    //    this.$emit("setApi")
+        const {data}=await this.actions.findDevApi()
+        this.actions.setAtrribute("apiOptionsArr",data)
     },
     methods: {
         getLabel(opt) {

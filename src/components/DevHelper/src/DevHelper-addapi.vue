@@ -17,6 +17,7 @@
 <script>
 import { Message } from 'element-ui'
     export default {
+        props:["apiOptionsArr"],
         data() {
             return {
                 formData: {
@@ -42,7 +43,8 @@ import { Message } from 'element-ui'
                     this.actions.saveDevApi(this.formData).then(async data=>{
                         if(data.flag){
                             //刷新api数组
-                            this.actions.setApiarr()
+                            const {data}=await this.actions.findDevApi()
+                            this.actions.setAtrribute("apiOptionsArr",data)
                             //重置form
                             this.handlerRepeat()
                             //消息提示
