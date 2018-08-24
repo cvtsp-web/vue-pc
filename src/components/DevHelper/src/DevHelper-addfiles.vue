@@ -38,9 +38,9 @@ export default {
         handleImageSuccess(res, file) {
             let _self=this;
             if(file.status == "success"){
-                // setTimeout(function(){
-                //     _self.uploadObj.clearFiles();
-                // },1000)
+                setTimeout(function(){
+                    _self.uploadObj.clearFiles();
+                },1000)
                 
             }
         },
