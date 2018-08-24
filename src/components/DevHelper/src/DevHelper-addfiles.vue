@@ -2,10 +2,11 @@
     <div>
         <el-upload 
             multiple
+            class="picture-upload"
             :action="FILE_UPLOAD" 
-            list-type="picture-card"
+            list-type="picture"
             :on-success="handleImageSuccess"
-            :before-upload="beforeImageUpload">
+            :before-upload="beforeImageUpload" ref='loads'>
             <img :src="imgUrl" />
             <i class="el-icon-plus"></i>
         </el-upload>
@@ -20,17 +21,28 @@ export default {
     components: { ElUpload: Upload  },
     data() {
         return {
-            imgUrl: ''
+            imgUrl: '',
+            
         }
     },
     computed: {
-        FILE_UPLOAD() {
+        uploadObj(){
+            return this.$refs['loads'];
+        },
+        FILE_UPLOAD(){
             return CONFIG.MIDDLE_SERVER + '/devtestapi/upload';
-        }
+        },
+        
     },
     methods: {
         handleImageSuccess(res, file) {
-            console.log(file)
+            let _self=this;
+            if(file.status == "success"){
+                setTimeout(function(){
+                    _self.uploadObj.clearFiles();
+                },1000)
+                
+            }
         },
 
         /**
@@ -43,17 +55,37 @@ export default {
             const isSIZE = file.size / 1024 / 1024 < 2;
 
             if(isIMG === -1) {
-                Message.error('上传内容不符合图片格式!');
-                return false;
-            }
 
-            if(!isSIZE) {
-                Message.error('上传内容不能超过2M');
-                return false;
+            }else{
+                if(!isSIZE) {
+                    Message.error('上传内容不能超过2M');
+                    return false;
+                }
             }
-            return true;
         }
     }
 }
 </script>
+<style>
+.picture-upload .el-upload--picture{
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 148px;
+    height: 148px;
+    line-height: 146px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+    
+}
+.picture-upload .el-upload-list{
+    margin: -10px 10px;
+    display: inline-block;
+}
+</style>
 
